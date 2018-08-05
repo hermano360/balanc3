@@ -19,19 +19,18 @@ const resolvers = {
   Query: {
     getTransactions: async (_,args) => {
       const transactions = await fetchTransactions(args.address)
-      console.log(transactions.body.result)
-      return [
-        {
-          name: 'Steve',
-          age: 12,
-          id: args.address
-        },
-        {
-          name: 'Steven',
-          age: 12,
-          id: args.address
+      return transactions.body.result.filter(entry => {
+        if(args.incoming && entry.to.toLowerCase() === args.address.toLowerCase()) return true
+        if(args.outgoing && entry.from.toLowerCase() === args.address.toLowerCase()) return true
+        return false
+      }).map(entry => {
+        return {
+          blockNo: entry.blockNumber,
+          timeStamp: entry.timeStamp,
+          hash: entry.hash,
+          value: entry.value
         }
-      ]
+      })
     },
     getBalance: async (_, args) => {
       const balance = await fetchBalance(args.address)

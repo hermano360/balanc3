@@ -1,8 +1,14 @@
 import React, {Component} from 'react';
 import Layout from '../components/Layout'
 import TransactionSearch from '../components/TransactionSearch'
+import TransactionResult from '../components/TransactionResult'
 import BalanceSearch from '../components/BalanceSearch'
+import BalanceResult from '../components/BalanceResult'
 import request from 'superagent'
+
+import gql from "graphql-tag";
+
+
 import {
   Button,
   Divider,
@@ -49,12 +55,47 @@ export class Main extends Component {
     })
   }
   searchTransactions = () => {
-    const {address} = this.state
-    console.log('graphql queries', address)
+    const {address, transactionOptions} = this.state
+    const {incoming,outgoing,blockNo,timeStamp,hash,value} = transactionOptions
+
+    request
+      .post('/graphql')
+      .set('Content-Type', 'application/json')
+      .send(JSON.stringify({"query": `
+        {
+          getTransactions(address: \"${address}\", incoming: ${incoming}, outgoing: ${outgoing})
+          {
+            ${blockNo ? 'blockNo': ''}
+            ${timeStamp ? 'timeStamp' : ''}
+            ${hash ? 'hash': ''}
+            ${value ? 'value': ''}
+          }
+        }`
+      }))
+      .then(res => {
+        console.log(res.body.data.getTransactions)
+        this.setState({
+          results: <TransactionResult />
+        })
+      })
+      .catch(err => console.log(err))
   }
   searchBalances = () => {
     const {address} = this.state
-    console.log('graphql queries', address)
+    request
+      .post('/graphql')
+      .set('Content-Type', 'application/json')
+      .send(JSON.stringify({"query": `
+        {
+          getBalance(address: \"${address}\")
+        }`
+      }))
+      .then(res => {
+        this.setState({
+          results: <BalanceResult balance={res.body.data.getBalance} />
+        })
+      })
+      .catch(err => console.log(err))
   }
 
   addressUpdate = (address) => {
@@ -114,6 +155,23 @@ export class Main extends Component {
 export default Main
 
 
+
+/*
+
+client
+  .query({
+    query: gql`
+      {
+        rates(currency: "USD") {
+          currency
+        }
+      }
+    `
+  })
+  .then(result => console.log(result));
+
+
+ */
 
 /*
 <Checkbox label='Block #' />

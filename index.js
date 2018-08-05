@@ -29,13 +29,14 @@ nextApp.prepare()
 
     const typeDefs = gql`
         type Query {
-          getTransactions(address: String) : [User],
+          getTransactions(address: String, incoming: Boolean, outgoing: Boolean) : [Transaction],
           getBalance(address: String) : String
         }
-        type User {
-          name: String,
-          age: Int
-          id: String
+        type Transaction {
+          blockNo: String,
+          timeStamp: String,
+          hash: String,
+          value: String
         }
         type Balance {
           balance: String

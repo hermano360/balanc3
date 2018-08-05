@@ -72,6 +72,62 @@ module.exports =
 /************************************************************************/
 /******/ ({
 
+/***/ "./components/BalanceResult.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("react");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__ = __webpack_require__("semantic-ui-react");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_semantic_ui_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__);
+var _jsxFileName = "/Users/herminiogarcia/Folders/personal/interviews/consensys-api/components/BalanceResult.js";
+
+
+/* harmony default export */ __webpack_exports__["a"] = (function (props) {
+  return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["Grid"].Row, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 22
+    }
+  }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["Grid"].Column, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 23
+    }
+  }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["Message"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 24
+    }
+  }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["Header"], {
+    as: "h1",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 25
+    }
+  }, "Balance"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["Grid"].Column, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 26
+    }
+  }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["Grid"].Row, {
+    style: {
+      margin: '10px 0'
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 27
+    }
+  }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 28
+    }
+  }, props.balance))))));
+});
+
+/***/ }),
+
 /***/ "./components/BalanceSearch.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -187,6 +243,14 @@ var _jsxFileName = "/Users/herminiogarcia/Folders/personal/interviews/consensys-
     }
   })), props.children);
 });
+
+/***/ }),
+
+/***/ "./components/TransactionResult.js":
+/***/ (function(module, __webpack_exports__) {
+
+"use strict";
+throw new Error("Module build failed: SyntaxError: /Users/herminiogarcia/Folders/personal/interviews/consensys-api/components/TransactionResult.js: Adjacent JSX elements must be wrapped in an enclosing tag. Did you want a JSX fragment <>...</>? (38:4)\n\n  36 |       </Table.Header>\n  37 |     </Table>\n> 38 |     <Table.Row>\n     |     ^\n  39 | \n  40 |       {props.timeStamp && <Table.Cell>Time Stamp</Table.Cell>}\n  41 |       {props.hash && <Table.Cell>Hash</Table.Cell>}\n    at _class.raise (/Users/herminiogarcia/Folders/personal/interviews/consensys-api/node_modules/babylon/lib/index.js:778:15)\n    at _class.jsxParseElementAt (/Users/herminiogarcia/Folders/personal/interviews/consensys-api/node_modules/babylon/lib/index.js:8067:14)\n    at _class.jsxParseElement (/Users/herminiogarcia/Folders/personal/interviews/consensys-api/node_modules/babylon/lib/index.js:8077:19)\n    at _class.parseExprAtom (/Users/herminiogarcia/Folders/personal/interviews/consensys-api/node_modules/babylon/lib/index.js:8084:21)\n    at _class.parseExprSubscripts (/Users/herminiogarcia/Folders/personal/interviews/consensys-api/node_modules/babylon/lib/index.js:2725:21)\n    at _class.parseMaybeUnary (/Users/herminiogarcia/Folders/personal/interviews/consensys-api/node_modules/babylon/lib/index.js:2704:21)\n    at _class.parseExprOps (/Users/herminiogarcia/Folders/personal/interviews/consensys-api/node_modules/babylon/lib/index.js:2616:21)\n    at _class.parseMaybeConditional (/Users/herminiogarcia/Folders/personal/interviews/consensys-api/node_modules/babylon/lib/index.js:2588:21)\n    at _class.parseMaybeAssign (/Users/herminiogarcia/Folders/personal/interviews/consensys-api/node_modules/babylon/lib/index.js:2546:21)\n    at _class.parseParenAndDistinguishExpression (/Users/herminiogarcia/Folders/personal/interviews/consensys-api/node_modules/babylon/lib/index.js:3271:28)\n    at _class.parseExprAtom (/Users/herminiogarcia/Folders/personal/interviews/consensys-api/node_modules/babylon/lib/index.js:3081:21)\n    at _class.parseExprAtom (/Users/herminiogarcia/Folders/personal/interviews/consensys-api/node_modules/babylon/lib/index.js:8086:52)\n    at _class.parseExprAtom (/Users/herminiogarcia/Folders/personal/interviews/consensys-api/node_modules/babylon/lib/index.js:8086:52)\n    at _class.parseExprAtom (/Users/herminiogarcia/Folders/personal/interviews/consensys-api/node_modules/babylon/lib/index.js:8086:52)\n    at _class.parseExprSubscripts (/Users/herminiogarcia/Folders/personal/interviews/consensys-api/node_modules/babylon/lib/index.js:2725:21)\n    at _class.parseMaybeUnary (/Users/herminiogarcia/Folders/personal/interviews/consensys-api/node_modules/babylon/lib/index.js:2704:21)");
 
 /***/ }),
 
@@ -371,11 +435,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Layout__ = __webpack_require__("./components/Layout.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_TransactionSearch__ = __webpack_require__("./components/TransactionSearch.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_BalanceSearch__ = __webpack_require__("./components/BalanceSearch.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_superagent__ = __webpack_require__("superagent");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_superagent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_superagent__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_semantic_ui_react__ = __webpack_require__("semantic-ui-react");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_semantic_ui_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_semantic_ui_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_TransactionResult__ = __webpack_require__("./components/TransactionResult.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_TransactionResult___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_TransactionResult__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_BalanceSearch__ = __webpack_require__("./components/BalanceSearch.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_BalanceResult__ = __webpack_require__("./components/BalanceResult.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_superagent__ = __webpack_require__("superagent");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_superagent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_superagent__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_graphql_tag__ = __webpack_require__("graphql-tag");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_graphql_tag___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_graphql_tag__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_semantic_ui_react__ = __webpack_require__("semantic-ui-react");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_semantic_ui_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_semantic_ui_react__);
 var _jsxFileName = "/Users/herminiogarcia/Folders/personal/interviews/consensys-api/pages/index.js";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -395,6 +464,9 @@ function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) ===
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+
+
 
 
 
@@ -453,8 +525,31 @@ function (_Component) {
       enumerable: true,
       writable: true,
       value: function value() {
-        var address = _this.state.address;
-        console.log('graphql queries', address);
+        var _this$state = _this.state,
+            address = _this$state.address,
+            transactionOptions = _this$state.transactionOptions;
+        var incoming = transactionOptions.incoming,
+            outgoing = transactionOptions.outgoing,
+            blockNo = transactionOptions.blockNo,
+            timeStamp = transactionOptions.timeStamp,
+            hash = transactionOptions.hash,
+            value = transactionOptions.value;
+        __WEBPACK_IMPORTED_MODULE_6_superagent___default.a.post('/graphql').set('Content-Type', 'application/json').send(JSON.stringify({
+          "query": "\n        {\n          getTransactions(address: \"".concat(address, "\", incoming: ").concat(incoming, ", outgoing: ").concat(outgoing, ")\n          {\n            ").concat(blockNo ? 'blockNo' : '', "\n            ").concat(timeStamp ? 'timeStamp' : '', "\n            ").concat(hash ? 'hash' : '', "\n            ").concat(value ? 'value' : '', "\n          }\n        }")
+        })).then(function (res) {
+          console.log(res.body.data.getTransactions);
+
+          _this.setState({
+            results: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_TransactionResult__["default"], {
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 78
+              }
+            })
+          });
+        }).catch(function (err) {
+          return console.log(err);
+        });
       }
     }), Object.defineProperty(_assertThisInitialized(_this), "searchBalances", {
       configurable: true,
@@ -462,7 +557,21 @@ function (_Component) {
       writable: true,
       value: function value() {
         var address = _this.state.address;
-        console.log('graphql queries', address);
+        __WEBPACK_IMPORTED_MODULE_6_superagent___default.a.post('/graphql').set('Content-Type', 'application/json').send(JSON.stringify({
+          "query": "\n        {\n          getBalance(address: \"".concat(address, "\")\n        }")
+        })).then(function (res) {
+          _this.setState({
+            results: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__components_BalanceResult__["a" /* default */], {
+              balance: res.body.data.getBalance,
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 95
+              }
+            })
+          });
+        }).catch(function (err) {
+          return console.log(err);
+        });
       }
     }), Object.defineProperty(_assertThisInitialized(_this), "addressUpdate", {
       configurable: true,
@@ -494,77 +603,77 @@ function (_Component) {
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_Layout__["a" /* default */], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 70
+          lineNumber: 111
         }
-      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_semantic_ui_react__["Grid"], {
+      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8_semantic_ui_react__["Grid"], {
         container: true,
         style: {
           padding: '10em 0em'
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 71
+          lineNumber: 112
         }
-      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_semantic_ui_react__["Grid"].Row, {
+      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8_semantic_ui_react__["Grid"].Row, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 72
+          lineNumber: 113
         }
-      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_semantic_ui_react__["Grid"].Column, {
+      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8_semantic_ui_react__["Grid"].Column, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 73
+          lineNumber: 114
         }
-      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_semantic_ui_react__["Header"], {
+      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8_semantic_ui_react__["Header"], {
         as: "h1",
         dividing: true,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 74
+          lineNumber: 115
         }
-      }, "Balanc3 Take Home App"))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_semantic_ui_react__["Grid"].Row, {
+      }, "Balanc3 Take Home App"))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8_semantic_ui_react__["Grid"].Row, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 79
+          lineNumber: 120
         }
-      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_semantic_ui_react__["Grid"].Column, {
+      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8_semantic_ui_react__["Grid"].Column, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 80
+          lineNumber: 121
         }
-      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_semantic_ui_react__["Message"], {
+      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8_semantic_ui_react__["Message"], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 81
+          lineNumber: 122
         }
-      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_semantic_ui_react__["Header"], {
+      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8_semantic_ui_react__["Header"], {
         as: "h1",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 82
+          lineNumber: 123
         }
       }, "Search By Address"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("p", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 83
+          lineNumber: 124
         }
-      }, "Choose whether you want to look up transactions or balance of an address!"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_semantic_ui_react__["Button"], {
+      }, "Choose whether you want to look up transactions or balance of an address!"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8_semantic_ui_react__["Button"], {
         color: "blue",
         onClick: function onClick() {
           return _this2.searchDesiredOption('transactions');
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 86
+          lineNumber: 127
         }
-      }, "Transactions"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_semantic_ui_react__["Button"], {
+      }, "Transactions"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8_semantic_ui_react__["Button"], {
         color: "blue",
         onClick: function onClick() {
           return _this2.searchDesiredOption('balance');
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 87
+          lineNumber: 128
         }
       }, "Balance")))), this.state.search === 'transactions' && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_TransactionSearch__["a" /* default */], {
         onSearch: this.searchTransactions,
@@ -574,15 +683,15 @@ function (_Component) {
         toggle: this.toggle,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 92
+          lineNumber: 133
         }
-      }), this.state.search === 'balance' && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_BalanceSearch__["a" /* default */], {
+      }), this.state.search === 'balance' && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_BalanceSearch__["a" /* default */], {
         onSearch: this.searchBalances,
         addressUpdate: this.addressUpdate,
         address: this.state.address,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 101
+          lineNumber: 142
         }
       }), this.state.results));
     }
@@ -591,6 +700,23 @@ function (_Component) {
   return Main;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 /* harmony default export */ __webpack_exports__["default"] = (Main);
+/*
+
+client
+  .query({
+    query: gql`
+      {
+        rates(currency: "USD") {
+          currency
+        }
+      }
+    `
+  })
+  .then(result => console.log(result));
+
+
+ */
+
 /*
 <Checkbox label='Block #' />
 <Checkbox label='timestamp' />
@@ -624,6 +750,13 @@ function (_Component) {
 
 module.exports = __webpack_require__("./pages/index.js");
 
+
+/***/ }),
+
+/***/ "graphql-tag":
+/***/ (function(module, exports) {
+
+module.exports = require("graphql-tag");
 
 /***/ }),
 
