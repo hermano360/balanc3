@@ -6,22 +6,7 @@ import BalanceSearch from '../components/BalanceSearch'
 import BalanceResult from '../components/BalanceResult'
 import request from 'superagent'
 
-import {
-  Button,
-  Divider,
-  Dropdown,
-  Grid,
-  Header,
-  Icon,
-  Image,
-  Label,
-  Menu,
-  Message,
-  Segment,
-  Table,
-  Input,
-  Checkbox
-} from 'semantic-ui-react'
+import {Button, Grid, Header, Message, Table, Input, Loader} from 'semantic-ui-react'
 
 export class Main extends Component {
   state = {
@@ -36,7 +21,8 @@ export class Main extends Component {
       hash: false,
       value: false
     },
-    error: null
+    error: null,
+    loading: false
   }
 
   toggle = (option) => {
@@ -54,12 +40,14 @@ export class Main extends Component {
     const {address, transactionOptions} = this.state
     const {incoming,outgoing,blockNo,timeStamp,hash,value} = transactionOptions
 
+    this.setState({loading: true, results: null})
+
     request
       .post('/graphql')
       .set('Content-Type', 'application/json')
       .send(JSON.stringify({"query": `
         {
-          getTransactions(address: \"${address}\", incoming: ${incoming}, outgoing: ${outgoing})
+          getTransactions(address: \"${address}\")
           {
             ${blockNo ? 'blockNo': ''}
             ${timeStamp ? 'timeStamp' : ''}
@@ -71,16 +59,29 @@ export class Main extends Component {
         }`
       }))
       .then(res => {
-        if(typeof res.body.data.getTransactions === 'string' || res.body.data.getTransactions === null){
+
+        const transactions = res.body.data.getTransactions
+
+        if(typeof transactions === 'string' || transactions === null){
           this.setState(
             {
               error: <div style={{color: 'red', fontSize: '16px'}}>Error! Please Try Again</div>,
-              results: null
+              results: null,
+              loading: false
             }
           )
         } else {
+
+          const {outgoing, incoming} = this.state.transactionOptions
+          const filteredTransactions = transactions.filter(entry => {
+              if(incoming && entry.to.toLowerCase() === address.toLowerCase()) return true
+              if(outgoing && entry.from.toLowerCase() === address.toLowerCase()) return true
+              return false
+          })
+
           this.setState({
-            results: <TransactionResult transactions={res.body.data.getTransactions}/>
+            results: <TransactionResult transactions={filteredTransactions}/>,
+            loading: false
           })
         }
 
@@ -89,6 +90,9 @@ export class Main extends Component {
   }
   searchBalances = () => {
     const {address} = this.state
+
+    this.setState({loading: true, results: null})
+
     request
       .post('/graphql')
       .set('Content-Type', 'application/json')
@@ -98,15 +102,17 @@ export class Main extends Component {
         }`
       }))
       .then(res => {
-        console.log(res)
         if(isNaN(Number(res.body.data.getBalance))) {
           this.setState({
             error: <div style={{color: 'red', fontSize: '16px'}}>{res.body.data.getBalance}</div>,
-            results: null
+            results: null,
+            loading: false
           })
         } else {
+          this.setState({loading: false})
           this.setState({
-            results: <BalanceResult balance={res.body.data.getBalance} />
+            results: <BalanceResult balance={res.body.data.getBalance}  />,
+            loading: false
           })
         }
       })
@@ -161,6 +167,12 @@ export class Main extends Component {
               address={this.state.address}
             />)
           }
+          <Grid.Row>
+            <Grid.Column>
+              <Loader active={this.state.loading} />
+            </Grid.Column>
+          </Grid.Row>
+
           {this.state.error}
           {this.state.results}
         </Grid>

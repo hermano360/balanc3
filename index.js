@@ -1,10 +1,10 @@
 const express = require('express');
 const { ApolloEngine } = require("apollo-engine");
-const { ApolloServer, gql } = require('apollo-server-express');
+const { ApolloServer} = require('apollo-server-express');
 const bodyParser = require( 'body-parser');
 const resolvers = require('./data/resolvers')
+const typeDefs = require('./data/schema')
 const compression = require('compression');
-// const { ApolloEngine } = require('apollo-engine');
 const cors = require('cors')
 const next = require('next')
 
@@ -28,23 +28,7 @@ nextApp.prepare()
       res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
       next();
     });
-    const typeDefs = gql`
-        type Query {
-          getTransactions(address: String, incoming: Boolean, outgoing: Boolean) : [Transaction] @cacheControl(maxAge: 180),
-          getBalance(address: String) : String @cacheControl(maxAge: 180)
-        }
-        type Transaction {
-          blockNo: String,
-          timeStamp: String,
-          hash: String,
-          value: String,
-          to: String,
-          from: String
-        }
-        type Balance {
-          balance: String
-        }
-    `
+
 
     const server = new ApolloServer({
       typeDefs,
@@ -66,10 +50,7 @@ nextApp.prepare()
       return handle(req, res)
     })
 
-
     const PORT = process.env.PORT || 4000;
-
-
     const engine = new ApolloEngine({
       apiKey: "service:consensys:eOYeL-KnTN0hobw1tueG7Q"
     });

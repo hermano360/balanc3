@@ -1,24 +1,8 @@
 import React, {Component} from 'react';
 
-import {
-  Button,
-  Divider,
-  Dropdown,
-  Grid,
-  Header,
-  Icon,
-  Image,
-  Label,
-  Menu,
-  Message,
-  Segment,
-  Table,
-  Input,
-  Checkbox
-} from 'semantic-ui-react'
+import {Grid, Header, Message} from 'semantic-ui-react'
 
-export default props => {
-  return (
+export default props => (
     <Grid.Row>
       <Grid.Column>
         <Message>
@@ -32,4 +16,3 @@ export default props => {
       </Grid.Column>
     </Grid.Row>
   )
-}

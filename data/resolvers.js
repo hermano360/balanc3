@@ -1,18 +1,52 @@
-// import {Product, CustomProduct, Template, CustomTemplate, User} from './connectors'
+const {Balance, Transactions} = require('./connectors')
 const request = require('superagent')
+
+
+const formatTransactions = transactions => {
+  return transactions.map(transaction => {
+    return {
+      blockNo: transaction.blockNumber,
+      timeStamp: transaction.timeStamp,
+      hash: transaction.hash,
+      value: transaction.value,
+      to: transaction.to.toLowerCase(),
+      from: transaction.from.toLowerCase()
+    }
+  })
+}
 
 const fetchTransactions = async (address) => {
   const transactions = await request
     .get(`http://api.etherscan.io/api?module=account&action=txlist&address=${address}&startblock=0&endblock=99999999&sort=asc&apikey=MBW7HV62BFHYQ97BYJFXJ3CBK2NTR7R8E2`)
     .set('Content-Type', 'application/json')
-  return transactions
+
+    const newTransactions = new Transactions({
+      transactions: formatTransactions(transactions.body.result),
+      address
+    })
+
+  const res = await Transactions.findOne({address})
+  if(res === null) await newTransactions.save()
+  else await Transactions.update({address}, {$set: {transactions: formatTransactions(transactions.body.result)}})
+
+  return transactions.body.result
 }
 
 const fetchBalance = async (address) => {
-  console.log(new Date())
+
   const balance = await request
     .get(`https://api.etherscan.io/api?module=account&action=balance&address=${address}&tag=latest&apikey=MBW7HV62BFHYQ97BYJFXJ3CBK2NTR7R8E2`)
     .set('Content-Type', 'application/json')
+
+    const newBalance = new Balance({
+      balance: balance.body.result,
+      address
+    })
+
+  const res = await Balance.findOne({address})
+  if(res === null) await newBalance.save()
+  else await Balance.update({address}, {$set: {balance: balance.body.result}})
+
   return balance.body.result
 }
 
@@ -20,20 +54,7 @@ const resolvers = {
   Query: {
     getTransactions: async (_,args) => {
       const transactions = await fetchTransactions(args.address)
-      return transactions.body.result.filter(entry => {
-        if(args.incoming && entry.to.toLowerCase() === args.address.toLowerCase()) return true
-        if(args.outgoing && entry.from.toLowerCase() === args.address.toLowerCase()) return true
-        return false
-      }).map(entry => {
-        return {
-          blockNo: entry.blockNumber,
-          timeStamp: entry.timeStamp,
-          hash: entry.hash,
-          value: entry.value,
-          to: entry.to.toLowerCase(),
-          from: entry.from.toLowerCase()
-        }
-      })
+      return formatTransactions(transactions)
     },
     getBalance: async (_, args) => {
       const balance = await fetchBalance(args.address)

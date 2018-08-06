@@ -1,20 +1,5 @@
 import React, {Component} from 'react';
-import {
-  Button,
-  Divider,
-  Dropdown,
-  Grid,
-  Header,
-  Icon,
-  Image,
-  Label,
-  Menu,
-  Message,
-  Segment,
-  Table,
-  Input,
-  Checkbox
-} from 'semantic-ui-react'
+import {Grid, Message, Header, Button, Input} from 'semantic-ui-react'
 
 const checkIfDisabled = (address, outgoing, incoming) => {
   if(address === '') return true
