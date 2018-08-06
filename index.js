@@ -30,8 +30,8 @@ nextApp.prepare()
     });
     const typeDefs = gql`
         type Query {
-          getTransactions(address: String, incoming: Boolean, outgoing: Boolean) : [Transaction] @cacheControl(maxAge: 5),
-          getBalance(address: String) : String @cacheControl(maxAge: 5)
+          getTransactions(address: String, incoming: Boolean, outgoing: Boolean) : [Transaction] @cacheControl(maxAge: 180),
+          getBalance(address: String) : String @cacheControl(maxAge: 180)
         }
         type Transaction {
           blockNo: String,
