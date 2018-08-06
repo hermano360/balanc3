@@ -22,7 +22,7 @@ const fetchTransactions = async (address) => {
 
     const newTransactions = new Transactions({
       transactions: formatTransactions(transactions.body.result),
-      address
+      address: address.toLowerCase()
     })
 
   const res = await Transactions.findOne({address})
