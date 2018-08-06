@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import Layout from '../components/Layout'
 import {
   Button,
   Divider,
@@ -16,6 +15,12 @@ import {
   Input,
   Checkbox
 } from 'semantic-ui-react'
+
+const checkIfDisabled = (address, outgoing, incoming) => {
+  if(address === '') return true
+  if(!incoming && !outgoing) return true
+  return false
+}
 
 export default props => {
   const {incoming, outgoing, blockNo, timeStamp, hash, value} = props.transactionOptions
@@ -43,8 +48,8 @@ export default props => {
             </Grid.Row>
           </Grid.Column>
           <div>
-            <Input placeholder='Address...' icon='search' value={props.address} onChange={e => props.addressUpdate(e.target.value)}/>
-            <Button color='blue' onClick={props.onSearch}>Search</Button>
+            <Input fluid placeholder='Address...' icon='search' value={props.address} onChange={e => props.addressUpdate(e.target.value)}/>
+            <Button color='blue' onClick={props.onSearch} disabled={checkIfDisabled(props.address, outgoing, incoming)}>Search</Button>
           </div>
         </Message>
       </Grid.Column>

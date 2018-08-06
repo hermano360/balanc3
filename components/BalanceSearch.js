@@ -29,8 +29,8 @@ export default props => {
             </Grid.Row>
           </Grid.Column>
           <div>
-            <Input placeholder='Address...' icon='search' value={props.address} onChange={e => props.addressUpdate(e.target.value)}/>
-            <Button color='blue' onClick={props.onSearch}>Search</Button>
+            <Input fluid placeholder='Address...' icon='search' value={props.address} onChange={e => props.addressUpdate(e.target.value)}/>
+            <Button color='blue' onClick={props.onSearch} disabled={props.address === ''}>Search</Button>
           </div>
         </Message>
       </Grid.Column>

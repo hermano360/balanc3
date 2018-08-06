@@ -6,9 +6,6 @@ import BalanceSearch from '../components/BalanceSearch'
 import BalanceResult from '../components/BalanceResult'
 import request from 'superagent'
 
-import gql from "graphql-tag";
-
-
 import {
   Button,
   Divider,
@@ -26,7 +23,6 @@ import {
   Checkbox
 } from 'semantic-ui-react'
 
-
 export class Main extends Component {
   state = {
     search: null,
@@ -40,7 +36,7 @@ export class Main extends Component {
       hash: false,
       value: false
     },
-    transactionError: null
+    error: null
   }
 
   toggle = (option) => {
@@ -50,7 +46,7 @@ export class Main extends Component {
           ...prevState.transactionOptions,
           [option]: !prevState.transactionOptions[option]
         },
-        transactionError: null
+        error: null
       }
     })
   }
@@ -69,14 +65,25 @@ export class Main extends Component {
             ${timeStamp ? 'timeStamp' : ''}
             ${hash ? 'hash': ''}
             ${value ? 'value': ''}
+            from
+            to
           }
         }`
       }))
       .then(res => {
-        console.log(res.body.data.getTransactions)
-        this.setState({
-          results: <TransactionResult />
-        })
+        if(typeof res.body.data.getTransactions === 'string' || res.body.data.getTransactions === null){
+          this.setState(
+            {
+              error: <div style={{color: 'red', fontSize: '16px'}}>Error! Please Try Again</div>,
+              results: null
+            }
+          )
+        } else {
+          this.setState({
+            results: <TransactionResult transactions={res.body.data.getTransactions}/>
+          })
+        }
+
       })
       .catch(err => console.log(err))
   }
@@ -91,22 +98,31 @@ export class Main extends Component {
         }`
       }))
       .then(res => {
-        this.setState({
-          results: <BalanceResult balance={res.body.data.getBalance} />
-        })
+        console.log(res)
+        if(isNaN(Number(res.body.data.getBalance))) {
+          this.setState({
+            error: <div style={{color: 'red', fontSize: '16px'}}>{res.body.data.getBalance}</div>,
+            results: null
+          })
+        } else {
+          this.setState({
+            results: <BalanceResult balance={res.body.data.getBalance} />
+          })
+        }
       })
       .catch(err => console.log(err))
   }
 
   addressUpdate = (address) => {
-    this.setState({address})
+    this.setState({address, error: null})
   }
 
   searchDesiredOption = (search) => {
-    this.setState({search, results: null})
+    this.setState({search, results: null, error: null})
   }
 
   render(){
+    const {search} = this.state
     return (
       <Layout>
         <Grid container style={{ padding: '10em 0em' }}>
@@ -124,8 +140,8 @@ export class Main extends Component {
                 <p>
                   Choose whether you want to look up transactions or balance of an address!
                 </p>
-                <Button color='blue' onClick={()=>this.searchDesiredOption('transactions')}>Transactions</Button>
-                <Button color='blue' onClick={()=>this.searchDesiredOption('balance')}>Balance</Button>
+                <Button color={search === 'transactions' ? 'blue' : null} onClick={()=>this.searchDesiredOption('transactions')}>Transactions</Button>
+                <Button color={search === 'balance' ? 'blue' : null} onClick={()=>this.searchDesiredOption('balance')}>Balance</Button>
               </Message>
             </Grid.Column>
           </Grid.Row>
@@ -145,6 +161,7 @@ export class Main extends Component {
               address={this.state.address}
             />)
           }
+          {this.state.error}
           {this.state.results}
         </Grid>
       </Layout>
@@ -153,48 +170,3 @@ export class Main extends Component {
 }
 
 export default Main
-
-
-
-/*
-
-client
-  .query({
-    query: gql`
-      {
-        rates(currency: "USD") {
-          currency
-        }
-      }
-    `
-  })
-  .then(result => console.log(result));
-
-
- */
-
-/*
-<Checkbox label='Block #' />
-<Checkbox label='timestamp' />
-<Checkbox label='Hash' />
-<Checkbox label='Value' />
-{
-    blockNumber: '5482806',
-    timeStamp: '1524355385',
-    hash: '0x6f379d3afe3a9fd0a8086adc61e1a2d1f74393fe2efe5b39179e4204c9e9a15d',
-    nonce: '9086397',
-    blockHash: '0xfe5e7b45b6b13bf855c7be25cfd301d870e8d4dd2fdc149374edc7fe041f159a',
-    transactionIndex: '2',
-    from: '0xea674fdde714fd979de3edf0f56aa9716b898ec8',
-    to: '0x96d978f81d962770d2379240899808f396856589',
-    value: '50788367621613343',
-    gas: '50000',
-    gasPrice: '1000000000',
-    isError: '0',
-    txreceipt_status: '1',
-    input: '0x',
-    contractAddress: '',
-    cumulativeGasUsed: '63000',
-    gasUsed: '21000',
-    confirmations: '596571' }
- */
